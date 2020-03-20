@@ -35,7 +35,8 @@
       synchronize:
         src: /Users/vagrant/Public/app
         dest: "{{ node_apps_location }}"
-      deligate_to: rs-mac-air
+        mode: pull
+      deligate_to: awx.test
 
     - name: Install app dependencies defined in package.json.
       npm: "path={{ node_apps_location }}/app"
