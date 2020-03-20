@@ -34,7 +34,7 @@
     - name: Transfer example Node.js app from my mac to server.
       synchronize:
         src: /Users/vagrant/Public/app
-        dest: {{ node_apps_location }}
+        dest: "{{ node_apps_location }}"
       deligate_to: rs-mac-air
 
     - name: Install app dependencies defined in package.json.
