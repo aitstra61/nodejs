@@ -17,8 +17,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "apptest1" do |app|
     app.vm.hostname = "node.test"
     app.vm.network :private_network, ip: "192.168.60.20"
-  config.ssh.private_key_path = ["~/.ssh/authorized_keys/id_rsa", "/Users/rstrait/.vagrant.d/insecure_private_key"]
-  config.vm.provision "file", source: "~/.ssh/authorized_keys/id_rsa.pub", destination: "~/.ssh/authorized_keys"
+  config.ssh.private_key_path = ["~/.ssh/id_rsa", "/Users/rstrait/.vagrant.d/insecure_private_key"]
+  config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh"
   config.vm.provision "shell", inline: <<-EOC
     sudo sed -i -e "\\#PasswordAuthentication yes# s#PasswordAuthentication yes#PasswordAuthentication no#g" /etc/ssh/sshd_config
    #sudo service ssh restart
@@ -29,8 +29,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "repotest1" do |app|
     app.vm.hostname = "repo.test"
     app.vm.network :private_network, ip: "192.168.60.30"
-    config.ssh.private_key_path = ["keys/id_rsa", "/Users/rstrait/.vagrant.d/insecure_private_key"]
-  config.vm.provision "file", source: "keys/id_rsa.pub", destination: "~/.ssh/authorized_keys"
+    config.ssh.private_key_path = ["~/.ssh/id_rsa", "/Users/rstrait/.vagrant.d/insecure_private_key"]
+  config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa"
   config.vm.provision "shell", inline: <<-EOC
     sudo sed -i -e "\\#PasswordAuthentication yes# s#PasswordAuthentication yes#PasswordAuthentication no#g" /etc/ssh/sshd_config
    #sudo service ssh restart
