@@ -9,7 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.insert_key = false
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.provider :virtualbox do |v|
-    v.memory = 256
+    v.memory = 2048
     v.linked_clone = true
   end
 
@@ -18,7 +18,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     app.vm.hostname = "node.test"
     app.vm.network :private_network, ip: "192.168.60.20"
   config.ssh.private_key_path = ["~/.ssh/id_rsa", "/Users/rstrait/.vagrant.d/insecure_private_key"]
-  config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa"
+  config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
   config.vm.provision "shell", inline: <<-EOC
     sudo sed -i -e "\\#PasswordAuthentication yes# s#PasswordAuthentication yes#PasswordAuthentication no#g" /etc/ssh/sshd_config
    #sudo service ssh restart
