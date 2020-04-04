@@ -14,8 +14,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # Application server 1.
-  config.vm.define "apptest1" do |app|
-    app.vm.hostname = "node.test"
+  config.vm.define "test1" do |app|
+    app.vm.hostname = "awx1.test"
     app.vm.network :private_network, ip: "192.168.60.20"
   config.ssh.private_key_path = ["/Users/rstrait/.ssh/id_rsa", "/Users/rstrait/.vagrant.d/insecure_private_key"]
   config.vm.provision "file", source: "/Users/rstrait/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
@@ -26,8 +26,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # Application server 2.
-  config.vm.define "repotest1" do |app|
-    app.vm.hostname = "repo.test"
+  config.vm.define "test2" do |app|
+    app.vm.hostname = "awx2.test"
     app.vm.network :private_network, ip: "192.168.60.30"
   config.ssh.private_key_path = ["/Users/rstrait/.ssh/id_rsa", "/Users/rstrait/.vagrant.d/insecure_private_key"]
   config.vm.provision "file", source: "/Users/rstrait/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys"
